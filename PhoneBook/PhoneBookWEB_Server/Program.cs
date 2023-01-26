@@ -10,7 +10,14 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
+
+//installing package for database connection and using it in the application
+//name of the package is Microsoft.EntityFrameworkCore.SqlServer
 builder.Services.AddDbContext<ApplicationDBContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+//installing package for automapper and using it for mapping between models and data access layer objects
+//name of the Nugget package is AutoMapper.Extensions.Microsoft.DependencyInjection
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 var app = builder.Build();
 

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UsersModels.UsersLibrary
+namespace UsersModels
 {
-    public class UserItems
+    public class UserModelDTO
     {
         public int Id { get; set; }
         public string Name { get; set; }
