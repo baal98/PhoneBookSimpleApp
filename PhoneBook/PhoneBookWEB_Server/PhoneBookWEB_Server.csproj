@@ -21,6 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Bussiness\Business.csproj" />
     <ProjectReference Include="..\ClassLibrary1\UsersModels.csproj" />
     <ProjectReference Include="..\PhoneBook_DataAccess\PhoneBook_DataAccess.csproj" />
   </ItemGroup>

@@ -1,3 +1,5 @@
+using Business.IRepository;
+using Business.Repository;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.EntityFrameworkCore;
@@ -14,6 +16,10 @@ builder.Services.AddSingleton<WeatherForecastService>();
 //installing package for database connection and using it in the application
 //name of the package is Microsoft.EntityFrameworkCore.SqlServer
 builder.Services.AddDbContext<ApplicationDBContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+//installing package for dependency injection and using it in the application which is give us the ability to inject the interface in the class
+//name of the package is Microsoft.Extensions.DependencyInjection
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 //installing package for automapper and using it for mapping between models and data access layer objects
 //name of the Nugget package is AutoMapper.Extensions.Microsoft.DependencyInjection

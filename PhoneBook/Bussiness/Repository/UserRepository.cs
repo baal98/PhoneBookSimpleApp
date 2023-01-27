@@ -44,7 +44,11 @@ namespace Business.Repository
         public UserModelDTO GetUserById(int id)
         {
             var obj = _db.Users.Find(id);
-            return _mapper.Map<User, UserModelDTO>(obj);
+            if (obj != null)
+            {
+                return _mapper.Map<User, UserModelDTO>(obj);
+            }
+            return new UserModelDTO();
         }
 
         public IEnumerable<UserModelDTO> GetAllUsers()
