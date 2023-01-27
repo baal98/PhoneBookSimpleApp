@@ -1,4 +1,6 @@
 ﻿@page "/User"
+@inject IUserRepository _UserRepository;
+@inject NavigationManager _NavigationManager;
 
 <h3>PhoneBookListFromDB</h3>
 
@@ -9,8 +11,85 @@
     <div class="col-4 offset-2">
         <a href="User/create" class="btn btn-primary form-control">Add New Contact</a>
     </div>
+    <br /><br />
+
+    <div class="col-12">
+        @if (UserList.Any())
+        {
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                        <th>Address</th>
+                        <th>Facebook</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var user in UserList)
+                    {
+                        <tr>
+                            <td>@user.Name</td>
+                            <td>@user.Phone</td>
+                            <td>@user.Email</td>
+                            <td>@user.Address</td>
+                            <td>@user.Facebook</td>
+                            <td>
+                                <a href="User/edit/@user.Id" class="btn btn-primary">Edit</a>
+@*                                <button class="btn btn-dark" @onclick="()=>EditUser(user.Id)">Edit</button>
+*@                                <button class="btn btn-danger" @onclick="()=>DeleteUser(user.Id)">Delete</button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            if (IsLoading)
+            {
+                <div class="text-center">
+                    <div class="spinner-border text-primary" role="status">
+                        <img src="images/rainbow-spinner-loading.gif"/>
+                    </div>
+                </div>
+
+            }
+            else
+            {
+                <h4 class="text-danger">No records found</h4>
+            }
+        }
+    </div>
 </div>
 
 @code {
+    private IEnumerable<UserModelDTO> UserList { get; set; } = new List<UserModelDTO>();
 
+    public bool IsLoading { get; set; } = true;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await Task.Run(LoadUsers);
+    }
+
+    private void LoadUsers()
+    {
+        UserList = _UserRepository.GetAllUsers();
+        IsLoading = false;
+    }
+
+    private void DeleteUser(int id)
+    {
+        var dbUserById = _UserRepository.GetUserById(id);
+        _UserRepository.DeleteUser(dbUserById);
+        UserList = _UserRepository.GetAllUsers();
+    }
+
+    //private void EditUser(int id)
+    //{
+    //    _NavigationManager.NavigateTo("User/edit/" + id);
+    //}
 }

@@ -27,18 +27,26 @@ namespace Business.Repository
 
         public UserModelDTO UpdateUser(UserModelDTO objDto)
         {
-            var obj = _mapper.Map<UserModelDTO, User>(objDto);
-            var updatedObj = _db.Users.Update(obj);
-            _db.SaveChanges();
-            return _mapper.Map<User, UserModelDTO>(updatedObj.Entity);
+            var obj = _db.Users.Find(objDto.Id);
+            if (obj != null)
+            {
+                _mapper.Map(objDto, obj);
+                _db.SaveChanges();
+                return _mapper.Map<User, UserModelDTO>(obj);
+            }
+            return null;
         }
 
         public UserModelDTO DeleteUser(UserModelDTO objDto)
         {
-            var obj = _mapper.Map<UserModelDTO, User>(objDto);
-            var deletedObj = _db.Users.Remove(obj);
-            _db.SaveChanges();
-            return _mapper.Map<User, UserModelDTO>(deletedObj.Entity);
+            var objFromDb = _db.Users.Find(objDto.Id);
+            if (objFromDb != null)
+            {
+                _db.Users.Remove(objFromDb);
+                _db.SaveChanges();
+                return _mapper.Map<User, UserModelDTO>(objFromDb);
+            }
+            return null;
         }
 
         public UserModelDTO GetUserById(int id)
