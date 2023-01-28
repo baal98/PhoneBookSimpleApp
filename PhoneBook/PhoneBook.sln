@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneBookWEB_Server", "PhoneBookWEB_Server\PhoneBookWEB_Server.csproj", "{CA29B4F2-1F6F-44D8-82C1-32746704B461}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhoneBookWEB_Server", "PhoneBookWEB_Server\PhoneBookWEB_Server.csproj", "{CA29B4F2-1F6F-44D8-82C1-32746704B461}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneBook_Client", "PhoneBook_Client\PhoneBook_Client.csproj", "{681957BA-E965-4086-95EB-F9D8FC2A5AD4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhoneBook_Client", "PhoneBook_Client\PhoneBook_Client.csproj", "{681957BA-E965-4086-95EB-F9D8FC2A5AD4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UsersModels", "ClassLibrary1\UsersModels.csproj", "{C3C678D6-C422-44F6-9FDD-DBF664551BCD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UsersModels", "ClassLibrary1\UsersModels.csproj", "{C3C678D6-C422-44F6-9FDD-DBF664551BCD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneBook_DataAccess", "PhoneBook_DataAccess\PhoneBook_DataAccess.csproj", "{0D14D6A3-E76F-4710-B213-8C7812330E7B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhoneBook_DataAccess", "PhoneBook_DataAccess\PhoneBook_DataAccess.csproj", "{0D14D6A3-E76F-4710-B213-8C7812330E7B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Business", "Bussiness\Business.csproj", "{D3E27887-02DA-40D5-B156-8C58F71E459F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Business", "Bussiness\Business.csproj", "{D3E27887-02DA-40D5-B156-8C58F71E459F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

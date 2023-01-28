@@ -33,14 +33,17 @@
                 <div class="form-control">
                     <label>Email</label>
                     <InputText @bind-Value="User.Email" class="form-control" />
+                    <ValidationMessage For="()=>User.Email"></ValidationMessage>
                 </div>
                 <div class="form-control">
                     <label>Address</label>
                     <InputText @bind-Value="User.Address" class="form-control" />
+                    <ValidationMessage For="()=>User.Address"></ValidationMessage>
                 </div>
                 <div class="form-control">
                     <label>Facebook</label>
                     <InputText @bind-Value="User.Facebook" class="form-control" />
+                    <ValidationMessage For="()=>User.Facebook"></ValidationMessage>
                 </div>
                 <div class="form-control">
                     <button class="btn btn-primary">@Title</button>
@@ -70,7 +73,7 @@
         }
         else
         {
-            Title = "Edit";
+            Title = "Update";
             await Task.Run(LoadUser);
         }
 

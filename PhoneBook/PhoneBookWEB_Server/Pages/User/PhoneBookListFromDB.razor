@@ -1,12 +1,12 @@
 ﻿@page "/User"
 @inject IUserRepository _UserRepository;
 @inject NavigationManager _NavigationManager;
+@inject IJSRuntime _JSRuntime;
 
-<h3>PhoneBookListFromDB</h3>
-
+<_DeleteConfirmation ConfirmationChanged="ConfirmDelete_click"></_DeleteConfirmation>
 <div class="row mt-4">
     <div class="col-6">
-        <h4 class="card-title text-primary">Phone Books List</h4>
+        <h2 class="card-title text-primary">Phone Books List</h2>
     </div>
     <div class="col-4 offset-2">
         <a href="User/create" class="btn btn-primary form-control">Add New Contact</a>
@@ -38,8 +38,8 @@
                             <td>@user.Facebook</td>
                             <td>
                                 <a href="User/edit/@user.Id" class="btn btn-primary">Edit</a>
-@*                                <button class="btn btn-dark" @onclick="()=>EditUser(user.Id)">Edit</button>
-*@                                <button class="btn btn-danger" @onclick="()=>DeleteUser(user.Id)">Delete</button>
+                                @*                                <button class="btn btn-dark" @onclick="()=>EditUser(user.Id)">Edit</button>
+                        *@                                <button class="btn btn-danger" @onclick="()=>DeleteUser(user.Id)">Delete</button>
                             </td>
                         </tr>
                     }
@@ -52,7 +52,7 @@
             {
                 <div class="text-center">
                     <div class="spinner-border text-primary" role="status">
-                        <img src="images/rainbow-spinner-loading.gif"/>
+                        <img src="images/rainbow-spinner-loading.gif" />
                     </div>
                 </div>
 
@@ -70,6 +70,8 @@
 
     public bool IsLoading { get; set; } = true;
 
+    public int DeleteId { get; set; } = 0;
+
     protected override async Task OnInitializedAsync()
     {
         await Task.Run(LoadUsers);
@@ -80,16 +82,22 @@
         UserList = _UserRepository.GetAllUsers();
         IsLoading = false;
     }
-
-    private void DeleteUser(int id)
+    
+    async Task DeleteUser(int id)
     {
-        var dbUserById = _UserRepository.GetUserById(id);
-        _UserRepository.DeleteUser(dbUserById);
-        UserList = _UserRepository.GetAllUsers();
+        DeleteId = id;
+        await _JSRuntime.InvokeVoidAsync("ShowDeleteConfirmationModal");
+        
     }
-
-    //private void EditUser(int id)
-    //{
-    //    _NavigationManager.NavigateTo("User/edit/" + id);
-    //}
+    
+    public async Task ConfirmDelete_click(bool confirmed)
+    {
+        if (confirmed && DeleteId != 0)
+        {
+            var dbUserById = _UserRepository.GetUserById(DeleteId);
+            _UserRepository.DeleteUser(dbUserById);
+            LoadUsers();
+            await _JSRuntime.InvokeVoidAsync("HideDeleteConfirmationModal");
+        }
+    }
 }
