@@ -38,8 +38,7 @@
                             <td>@user.Facebook</td>
                             <td>
                                 <a href="User/edit/@user.Id" class="btn btn-primary">Edit</a>
-                                @*                                <button class="btn btn-dark" @onclick="()=>EditUser(user.Id)">Edit</button>
-                        *@                                <button class="btn btn-danger" @onclick="()=>DeleteUser(user.Id)">Delete</button>
+                                <button class="btn btn-danger" @onclick="()=>DeleteUser(user.Id)">Delete</button>
                             </td>
                         </tr>
                     }
@@ -82,14 +81,14 @@
         UserList = _UserRepository.GetAllUsers();
         IsLoading = false;
     }
-    
+
     async Task DeleteUser(int id)
     {
         DeleteId = id;
         await _JSRuntime.InvokeVoidAsync("ShowDeleteConfirmationModal");
-        
+
     }
-    
+
     public async Task ConfirmDelete_click(bool confirmed)
     {
         if (confirmed && DeleteId != 0)

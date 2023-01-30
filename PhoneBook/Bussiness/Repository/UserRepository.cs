@@ -64,6 +64,16 @@ namespace Business.Repository
             var obj = _db.Users.ToList();
             return _mapper.Map<IEnumerable<User>, IEnumerable<UserModelDTO>>(obj);
         }
+
+        public List<UserModelDTO> SearchUsers(string objSearch)
+        {
+            var objList = _db.Users.Where(x => x.Name.Contains(objSearch) || 
+                                           x.Email.Contains(objSearch) || 
+                                           x.Phone.Contains(objSearch) || 
+                                           x.Address.Contains(objSearch) || 
+                                           x.Facebook.Contains(objSearch)).ToList();
+            return _mapper.Map<List<User>, List<UserModelDTO>>(objList);
+        }
     }
 }
 

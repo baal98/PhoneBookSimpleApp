@@ -1,0 +1,85 @@
+﻿@page "/AdditionalPages/SearchResult/{SearchTerm}"
+@page "/AdditionalPages/SearchResult"
+@using PhoneBookWEB_Server.Pages.AdditionalPages
+
+@using Business.Repository
+@inject IUserRepository _UserRepository;
+@inject NavigationManager _NavigationManager;
+@inject IJSRuntime _JSRuntime;
+
+<h1 class="btn-outline-primary">Search result</h1>
+
+<div class="row my-2">
+    <h3 class="card-title text-primary mb-3">@Title</h3>
+    @if (IsFound)
+    {
+        foreach (var User in UserList)
+        {
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title"> @User.Name</h5>
+                    <p class="card-text">
+                        <b>Phone Number:</b> @User.Phone<br />
+                    </p>
+                    <p class="card-text">
+                        <b>Address:</b> @User.Address<br />
+                    </p>
+                    <p class="card-text">
+                        <b>Email:</b> @User.Email<br />
+                    </p>
+                    <p class="card-text">
+                        <b>Facebook:</b> @User.Facebook<br />
+                    </p>
+                </div>
+            </div>
+        }
+        <button class="btn btn-primary" @onclick="ClearContent">Clear</button>
+    }
+    else
+    {
+        <div class="text-center">
+            <div class="spinner-border text-primary" role="status">
+                <img src="images/rainbow-spinner-loading.gif" />
+            </div>
+        </div>
+    }
+</div>
+
+
+@code {
+    [Parameter]
+    public string SearchTerm { get; set; } = String.Empty;
+
+    private IEnumerable<UserModelDTO> UserList { get; set; } = new List<UserModelDTO>();
+    private string Title { get; set; } = "Found Users";
+    public bool IsFound { get; set; } = true;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await Task.Run(LoadUsers);
+    }
+
+    private void LoadUsers()
+    {
+        UserList = _UserRepository.GetAllUsers();
+        if (UserList.Count() == 0)
+        {
+            IsFound = false;
+            Title = "No records found";
+        }
+        else
+        {
+            UserList = _UserRepository.SearchUsers(SearchTerm);
+            if (UserList.Count() == 0)
+            {
+                IsFound = false;
+                Title = "No records found";
+            }
+        }
+    }
+
+    private void ClearContent()
+    {
+        _NavigationManager.NavigateTo("/User");
+    }
+}

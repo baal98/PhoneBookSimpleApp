@@ -1,14 +1,19 @@
+        .example{
+    margin-left: 700px;
+    margin-top: 15px;
+}
 .navbar-toggler {
     background-color: rgba(255, 255, 255, 0.1);
+    display: none;
 }
 
 .top-row {
     height: 3.5rem;
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgb(36, 10, 148);
 }
 
 .navbar-brand {
-    font-size: 1.1rem;
+    font-size: 1.8rem;
 }
 
 .oi {
@@ -32,7 +37,7 @@
     }
 
     .nav-item ::deep a {
-        color: #d7d7d7;
+        color: white;
         border-radius: 4px;
         height: 3rem;
         display: flex;
@@ -41,12 +46,12 @@
     }
 
 .nav-item ::deep a.active {
-    background-color: rgba(255,255,255,0.25);
+    background-color: rgb(104, 3, 143);
     color: white;
 }
 
 .nav-item ::deep a:hover {
-    background-color: rgba(255,255,255,0.1);
+    background-color: rgb(128, 106, 221);
     color: white;
 }
 
@@ -56,7 +61,7 @@
     }
 
     .collapse {
-        /* Never collapse the sidebar for wide screens */
+        Never collapse the sidebar for wide screens display: block;
         display: block;
     }
 }

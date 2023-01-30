@@ -1,4 +1,8 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
+﻿@inject IUserRepository _UserRepository;
+@inject NavigationManager _NavigationManager;
+@inject IJSRuntime _JSRuntime;
+
+<div class="top-row ps-3 navbar navbar-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="">Phone Book</a>
         <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
@@ -8,25 +12,16 @@
 </div>
 
 <div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
-    <nav class="flex-column">
+    <ul class="nav">
+        <div class="nav-item px-3"></div>
         <div class="nav-item px-3">
             <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
                 <span class="oi oi-home" aria-hidden="true"></span> Home
             </NavLink>
         </div>
         <div class="nav-item px-3">
-            <NavLink class="nav-link" href="counter">
-                <span class="oi oi-plus" aria-hidden="true"></span> Counter
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="fetchdata">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
             <NavLink class="nav-link" href="/AdditionalPages/AddContact">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Add Contact
+                <span class="oi oi-plus" aria-hidden="true"></span> Add Contact
             </NavLink>
         </div>
         <div class="nav-item px-3">
@@ -34,7 +29,13 @@
                 <span class="oi oi-list-rich" aria-hidden="true"></span> All Contacts
             </NavLink>
         </div>
-    </nav>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <form class="example">
+            <input type="text" @bind-value="@SearchTerm" placeholder="Search.." name="search">
+            <NavLink button @onclick="()=>Search(SearchTerm)"><i class="fa fa-search"></i></NavLink>
+        </form>
+
+    </ul>
 </div>
 
 @code {
@@ -44,6 +45,31 @@
 
     private void ToggleNavMenu()
     {
-        collapseNavMenu = !collapseNavMenu;
+        if (!_NavigationManager.Uri.Contains("Search"))
+        {
+            collapseNavMenu = !collapseNavMenu;
+        }
+    }
+
+
+
+    private IEnumerable<UserModelDTO> UserList { get; set; } = new List<UserModelDTO>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        await Task.Run(LoadUsers);
+    }
+    
+    private void LoadUsers()
+    {
+        UserList = _UserRepository.GetAllUsers();
+    }
+
+    public string SearchTerm { get; set; } = String.Empty;
+
+    private void Search(string searchTerm)
+    {
+        _NavigationManager.NavigateTo($"/AdditionalPages/SearchResult/{searchTerm}");
+        SearchTerm = String.Empty;        
     }
 }

@@ -14,5 +14,6 @@ namespace Business.IRepository
         public UserModelDTO DeleteUser(UserModelDTO objDto);
         public UserModelDTO GetUserById(int id);
         public IEnumerable<UserModelDTO> GetAllUsers();
+        public List<UserModelDTO> SearchUsers(string objSearch);
     }
 }
