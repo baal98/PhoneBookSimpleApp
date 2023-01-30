@@ -5,6 +5,135 @@
 @inject IUserRepository _UserRepository;
 @inject NavigationManager _NavigationManager;
 
+<PageTitle>>@Title Contact</PageTitle>
+
+<style>
+    body {
+        background-color: antiquewhite;
+    }
+</style>
+
+<div class="container">
+    <div class="row header">
+        <h1 class="card-title text-primary">@Title Contact</h1>
+        <h3>Fill out the form below to @Title Contact</h3>
+    </div>
+    @if (IsLoading)
+    {
+        <div class="text-center">
+            <div class="spinner-border text-primary" role="status">
+                <img src="images/rainbow-spinner-loading.gif" />
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="row body">
+                <ul>
+                    <EditForm Model="User" OnValidSubmit="UpsertUser">
+                <DataAnnotationsValidator></DataAnnotationsValidator>
+                <div class="form-control">
+                    <label>Name</label>
+                    <InputText @bind-Value="User.Name" class="form-control" />
+                    <ValidationMessage For="()=>User.Name"></ValidationMessage>
+                </div>
+                <div class="form-control">
+                    <label>Phone</label>
+                    <InputText @bind-Value="User.Phone" class="form-control" />
+                    <ValidationMessage For="()=>User.Phone"></ValidationMessage>
+                </div>
+                <div class="form-control">
+                    <label>Email</label>
+                    <InputText @bind-Value="User.Email" class="form-control" />
+                    <ValidationMessage For="()=>User.Email"></ValidationMessage>
+                </div>
+                <div class="form-control">
+                    <label>Address</label>
+                    <InputText @bind-Value="User.Address" class="form-control" />
+                    <ValidationMessage For="()=>User.Address"></ValidationMessage>
+                </div>
+                <div class="form-control">
+                    <label>Facebook</label>
+                    <InputText @bind-Value="User.Facebook" class="form-control" />
+                    <ValidationMessage For="()=>User.Facebook"></ValidationMessage>
+                </div>
+                <div class="form-control">
+                    <button class="btn btn-primary">@Title</button>
+                    <NavLink class="btn alert-dark" href="/User">Back To Index</NavLink>
+                </div>
+            </EditForm>
+
+                </ul>
+        </div>
+    }
+</div>
+
+
+
+
+
+
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    private UserModelDTO User { get; set; } = new UserModelDTO();
+    private string Title { get; set; } = "Create";
+    public bool IsLoading { get; set; } = true;
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (Id == 0)
+        {
+            Title = "Create";
+            IsLoading = false;
+        }
+        else
+        {
+            Title = "Update";
+            await Task.Run(LoadUser);
+        }
+
+    }
+
+    private void LoadUser()
+    {
+        User = _UserRepository.GetUserById(Id);
+        IsLoading = false;
+    }
+
+    private void UpsertUser()
+    {
+        if (User.Id == 0)
+        {
+            _UserRepository.CreateUser(User);
+        }
+        else
+        {
+            _UserRepository.UpdateUser(User);
+        }
+        _NavigationManager.NavigateTo("User");
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+@*@page "/User/create"
+@page "/User/edit/{id:int}"
+
+@using Business.Repository
+@inject IUserRepository _UserRepository;
+@inject NavigationManager _NavigationManager;
+
 <div class="upsert">
     <h3 class="card-title text-primary mb-3">@Title Contact</h3>
     @if (IsLoading)
@@ -98,3 +227,4 @@
         _NavigationManager.NavigateTo("User");
     }
 }
+*@

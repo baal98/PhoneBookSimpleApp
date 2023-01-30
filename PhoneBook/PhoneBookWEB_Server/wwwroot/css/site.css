@@ -4,11 +4,6 @@ html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
-/*.body{
-    margin-left:20px;
-    margin-right:20px;
-}*/
-
 .index-head {
     margin-top: 20px;
     margin-bottom: 20px;
@@ -89,3 +84,14 @@ a, .btn-link {
     .blazor-error-boundary::after {
         content: "An error has occurred."
     }
+
+.main-view {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    position: center absolute;
+    color: wheat;
+    font-size: 100px;
+    font-weight: bold;
+    text-align: center;
+    background-color: none;
+}

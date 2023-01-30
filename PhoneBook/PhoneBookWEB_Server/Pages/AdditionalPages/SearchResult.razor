@@ -7,12 +7,26 @@
 @inject NavigationManager _NavigationManager;
 @inject IJSRuntime _JSRuntime;
 
-<h1 class="btn-outline-primary">Search result</h1>
+<style>
+    body {
+        background-color: antiquewhite;
+    }
+</style>
 
 <div class="row my-2">
-    <h3 class="card-title text-primary mb-3">@Title</h3>
+
+    <h1 class="card-title text-primary mb-3">Search result</h1>
+
     @if (IsFound)
     {
+        int userCounter = 0;
+        foreach (var User in UserList)
+        {
+            userCounter++;
+        }
+
+        <h3 class="card-title text-primary mb-3">@(userCounter==0 ? "There is no users with given criteria" : "Found") @userCounter user@(userCounter==1 ? "":"s")</h3>
+
         foreach (var User in UserList)
         {
             <div class="card">
@@ -65,21 +79,21 @@
         if (UserList.Count() == 0)
         {
             IsFound = false;
-            Title = "No records found";
+            //Title = "No records found";
         }
         else
         {
             UserList = _UserRepository.SearchUsers(SearchTerm);
-            if (UserList.Count() == 0)
-            {
-                IsFound = false;
-                Title = "No records found";
-            }
+            //if (UserList.Count() == 0)
+            //{
+            //    IsFound = false;
+            //    //Title = "No records found";
+            //}
         }
     }
 
     private void ClearContent()
     {
-        _NavigationManager.NavigateTo("/User");
+        _NavigationManager.NavigateTo("/");
     }
 }
