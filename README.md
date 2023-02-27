@@ -41,14 +41,12 @@ This project is training project for ASP.NET Core with Blazor functionality.
 
 ## Application functionality:
 
-1. This application has the following functionality:
+1. Adding a user to a database.
 
-2. Adding a user to a database.
+2. Check validation of the input data.
 
-3. Check validation of the input data.
+3. Editing an existing user.
 
-4. Editing an existing user.
+4. Searching a user according to specified criteria and display the result.
 
-5. Searching a user according to specified criteria and display the result.
-
-6. Show all users in the database.
+5. Show all users in the database.
