@@ -1,4 +1,4 @@
-# QuizHut
+# Simple Phone Book
 
 Simple web application for education with add-remove-edit-search user functionality.
 This project is training project for ASP.NET Core with Blazor functionality.
@@ -11,17 +11,11 @@ This project is training project for ASP.NET Core with Blazor functionality.
 
 ## Technology stack:
 
-- ASP.NET Core 3.1
+- ASP.NET Core 6.01
 
-- Entity Framework Core 3.1
+- Entity Framework Core 6.01
 
-- SQL Server
-
-- SendGrid
-
-- SignalR
-
-- Hangfire
+- Blazor
 
 - JavaScript
 
