@@ -1,7 +1,7 @@
 # QuizHut
 
-Web application for a simple educational network with built-in Quiz system.
-This project is the defense project for ASP.NET Core course (part of the C# Web Module at Software University).
+Simple web application for education with add-remove-edit-search user functionality.
+This project is training project for ASP.NET Core with Blazor functionality.
 
 ## Table of Contents
 1. [Technology stack](https://github.com/miraDask/QuizHut#technology-stack)
