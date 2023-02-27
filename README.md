@@ -5,7 +5,7 @@ This project is training project for ASP.NET Core with Blazor functionality.
 
 ## Table of Contents
 1. [Technology stack](https://github.com/miraDask/QuizHut#technology-stack)
-2. [Screenshots](https://github.com/miraDask/QuizHut#screenshots)
+2. [Screenshots](https://github.com/baal98/PhoneBookSimpleApp#screenshots)
 3. [Application Configurations](https://github.com/miraDask/QuizHut#application-configurations)
 4. [Credits](https://github.com/miraDask/QuizHut#credits)
 
@@ -25,26 +25,17 @@ This project is training project for ASP.NET Core with Blazor functionality.
 
 ## Screenshots:
 
-### Home Page (guest)
-<img width="953" alt="Home page" src="https://user-images.githubusercontent.com/35633887/90977460-ab6c7900-e53d-11ea-871c-96b11ed7c821.png">
+### Home Page
+<img width="953" alt="Home page" src="https://github.com/baal98/PhoneBookSimpleApp/blob/master/Sample%20Images/WellcomeScr.jpg">
 
-### Home Page (admin)
-<img width="959" alt="Admin home page" src="https://user-images.githubusercontent.com/35633887/90977476-b3c4b400-e53d-11ea-9043-b064a5a97322.png">
+### Create/Edit Page
+<img width="959" alt="Create/Edit page" src="https://github.com/baal98/PhoneBookSimpleApp/blob/master/Sample%20Images/CreateEditFnc.jpg">
 
-### Dasboard (admin)
-<img width="945" alt="Admin dashboard" src="https://user-images.githubusercontent.com/35633887/90977533-fbe3d680-e53d-11ea-986c-11496508167a.png">
+### Dasboard
+<img width="945" alt="Dashboard" src="https://github.com/baal98/PhoneBookSimpleApp/blob/master/Sample%20Images/AllFieldsFnc.jpg">
 
-### Quizzes Page (admin/teacher)
-<img width="949" alt="Quizzes page" src="https://user-images.githubusercontent.com/35633887/90977554-2d5ca200-e53e-11ea-8ae8-70c4542aae15.png">
-
-### Create Quiz (admin/teacher)
-<img width="470" alt="Create quiz-details page" src="https://user-images.githubusercontent.com/35633887/90977557-30f02900-e53e-11ea-9fd0-4154160cf971.png">
-
-### Take Quiz (student)
-<img width="960" alt="Take quiz page" src="https://user-images.githubusercontent.com/35633887/90977559-364d7380-e53e-11ea-9971-3f7dace94b18.png">
-
-### Warnings
-<img width="942" alt="warnings" src="https://user-images.githubusercontent.com/35633887/90977561-42393580-e53e-11ea-923d-bf18c5b7891b.png">
+### Search Page
+<img width="949" alt="Search page" src="https://github.com/baal98/PhoneBookSimpleApp/blob/master/Sample%20Images/SearchFnc.jpg">
 
 
 ## Application Configurations:
