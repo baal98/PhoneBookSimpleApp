@@ -47,6 +47,6 @@ This project is training project for ASP.NET Core with Blazor functionality.
 
 3. Editing an existing user.
 
-4. Searching a user according to specified criteria and display the result.
+4. Searching user according to specified criteria and display the result.
 
 5. Show all users in the database.
